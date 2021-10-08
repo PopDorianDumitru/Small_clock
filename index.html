@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<body id="bod">
+
+  <!-- click on this button calls clockStart() -->
+  <input type="button" onclick="clockStart()" value="Start">
+
+  <!-- click on this button calls clockStop() -->
+  <input type="button" onclick="clockStop()" value="Stop">
+    <script>
+        function f(){
+            tm = Date.now();
+            time = new Date(tm);
+            current_hour = time.getHours(); 
+            current_minutes = time.getMinutes(); 
+            current_seconds = time.getSeconds();
+            if(current_hour <= 9)
+                current_hour = "0"+current_hour;
+            if(current_minutes <= 9)
+                current_minutes = "0"+current_minutes;
+            if(current_seconds <= 9)
+                current_seconds = "0"+current_seconds;
+            str = `${current_hour}:${current_minutes}:${current_seconds}`; 
+            elem.textContent = str;
+        }
+        let tm = Date.now();
+        let time = new Date(tm);
+        let current_hour = time.getHours(), current_minutes = time.getMinutes(), current_seconds = time.getSeconds();
+        if(current_hour <= 9)
+            current_hour = "0"+current_hour;
+        if(current_minutes <= 9)
+            current_minutes = "0"+current_minutes;
+        if(current_seconds <= 9)
+            current_seconds = "0"+current_seconds;
+        let str = `${current_hour}:${current_minutes}:${current_seconds}`; 
+        let elem = document.createElement("div");
+        elem.textContent = str;
+        bod.prepend(elem);
+        let interval = setInterval(f, 0) ;
+       
+        function clockStart(){
+            interval = setInterval(f, 0);
+        }
+        function clockStop(){
+            clearInterval(interval);
+        }
+    </script>
+</body>
+</html>
